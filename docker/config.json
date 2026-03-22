@@ -2,7 +2,7 @@
   "CentralSystemServer": {
     "protocol": "http",
     "host": "localhost",
-    "port": 81,
+    "port": 8081,
 		"pollIntervalSecs": 10
   },
   "Authorization": {
@@ -13,7 +13,7 @@
   },
   "User": {
     "maxPictureKb": 150,
-    "captchaSiteKey": "6LfzXSIUAAAAADTMDaUDMJ8-zYmLSmr8BeIZcK7t"
+    "captchaSiteKey": ""
   },
   "Car": {
     "url": "https://ev-database.org/"
