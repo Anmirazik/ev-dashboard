@@ -22,8 +22,8 @@ Local dev setup (ev-server on Docker):
 - protocol: `http`, host: `localhost`, port: `8081`
 
 Default logins (seeded automatically on fresh Docker start, or insert manually if missing):
-- Super admin (no tenant): `super.admin@ev.com` / `Super.admin00`
-- SLF tenant (subdomain `slf`): `slf.admin@ev.com` / `Slf.admin00`
+- Super admin: `super.admin@ev.com` / `Super.admin00` → http://localhost:3080
+- SLF tenant: `slf.admin@ev.com` / `Slf.admin00` → http://slf.localhost:3080
 
 Full clean restart of ev-server (wipes everything including mongo data — re-seeds users):
 ```bash
