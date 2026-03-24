@@ -4,6 +4,7 @@
 config
 src/assets/config*.json
 !src/assets/config-template.json
+!src/assets/config.json
 manifest.yml
 test/results
 test/results-eslint
