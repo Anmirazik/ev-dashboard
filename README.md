@@ -51,26 +51,38 @@ brew install node
 
 #### Configuration
 
-There is one template provided: **src/assets/config-template.json**.
+**`src/assets/config.json` is already committed** and pre-configured for local Docker development — no manual copy or edit needed to get started.
 
-Rename it to **config.json**.
+For reference, a template is also provided at `src/assets/config-template.json`. Use it as a base when configuring a custom or production environment.
 
-Move this configuration file into the **src/assets** directory.
+The committed `config.json` is set up as follows:
 
-Edit this file, you will set relevant config data in it.
+```json
+{
+  "CentralSystemServer": {
+    "protocol": "http",
+    "host": "localhost",
+    "port": 8081
+  },
+  "User": {
+    "captchaSiteKey": "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+  }
+}
+```
+
+- **Port 8081** matches the ev-server Docker REST port
+- **captchaSiteKey** is Google's public test reCAPTCHA key, paired with the test secret key already set in `ev-server/docker/config.json`
 
 #### Connect to the Central Service REST Server (CSRS)
 
-The dashboard is served by a web server, downloaded into the browser and will call the REST Server to retrieve and display the data.
-
-Set the REST Server URL:
+The dashboard calls the ev-server REST API. If you need to point to a different backend, update `CentralSystemServer` in `src/assets/config.json`:
 
 ```json
   "CentralSystemServer": {
     "protocol": "http",
     "host": "localhost",
-    "port": 80
-  },
+    "port": 8081
+  }
 ```
 
 ### Create and set a Google Maps API key
@@ -80,13 +92,14 @@ Once the key is created it must be enabled (from the Google Console) and the val
 	src="https://maps.googleapis.com/maps/api/js?key=<YOUR_KEY_HERE>&libraries=places&language=en"></script>
 
 ### Setup the reCaptcha API key
-In order to call REST endpoints of ev-server, a reCaptcha key is required. Refers to this link https://www.google.com/recaptcha/admin/create to create one then copy the client key in config.json, in User section:
+The committed `config.json` already includes Google's public test reCAPTCHA site key which works out of the box with the local Docker ev-server setup.
 
-```json 
-	"User": {
-	  "maxPictureKb": 150,
-	  "captchaSiteKey": "<GOOGLE_RECAPTCHA_KEY_CLIENT>"
-	},
+For production, replace it with your own key from https://www.google.com/recaptcha/admin/create and set the paired server key in ev-server's `CentralSystemRestService.captchaSecretKey`:
+
+```json
+  "User": {
+    "captchaSiteKey": "<YOUR_GOOGLE_RECAPTCHA_SITE_KEY>"
+  }
 ```
 
 ## Start the Dashboard Server

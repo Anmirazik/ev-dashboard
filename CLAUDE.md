@@ -16,10 +16,11 @@ npm test               # Jest + Puppeteer e2e
 
 ## Backend Connection
 
-Config lives in `src/assets/config.json` (gitignored — copy from `config-template.json`).
+Config lives in `src/assets/config.json` — **now committed to the repo**, pre-configured for local Docker setup. No manual copy needed.
 
 Local dev setup (ev-server on Docker):
 - protocol: `http`, host: `localhost`, port: `8081`
+- `captchaSiteKey`: Google test reCAPTCHA site key (paired with the test secret key in `ev-server/docker/config.json`)
 
 Default logins (seeded automatically on fresh Docker start, or insert manually if missing):
 - Super admin: `super.admin@ev.com` / `Super.admin00` → http://localhost:3080
@@ -41,14 +42,14 @@ src/app/
   types/            # TypeScript interfaces
   utils/            # Helpers
 src/assets/
-  config.json           # Runtime config (gitignored)
-  config-template.json  # Template to copy from
+  config.json           # Runtime config (committed — pre-configured for local Docker)
+  config-template.json  # Template for reference / custom environments
   i18n/                 # Translation files (en, fr, de, it, es, pt, cs)
 ```
 
 ## Gotchas
 
-- `src/assets/config.json` must exist before running — not committed, copy from template
+- `src/assets/config.json` is committed and pre-configured for local Docker — no copy needed. For production or custom environments, edit it or base a new one off `config-template.json`
 - Node 16.x and npm 8.x required (see `engines` in package.json)
 - `npm start` calls `npm version` first — expects a clean or versioned state
 - SSL dev mode needs certs at `./ssl/localhost.key` and `./ssl/localhost.cert`
